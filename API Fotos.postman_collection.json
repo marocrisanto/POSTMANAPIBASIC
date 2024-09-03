@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "948b51ee-ca97-47b1-a1b2-391143511472",
+		"name": "API Fotos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30137718"
+	},
+	"item": [
+		{
+			"name": "API de fotos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"Validar que el estado sea 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Respuesta en los campos\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson).to.be.an('array').that.is.not.empty;",
+							"",
+							"    responseJson.forEach(user => {",
+							"    pm.expect(user).to.have.property('albumId');",
+							"    pm.expect(user).to.have.property('title');",
+							"    pm.expect(user).to.have.property('url');",
+							"    });",
+							"});",
+							"",
+							"pm.test(\"Tiempo de respuesta es menor a 800 ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(800);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/photos",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"photos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
